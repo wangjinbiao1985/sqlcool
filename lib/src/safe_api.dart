@@ -60,7 +60,8 @@ class SqlDb {
       List<String> queries = const <String>[],
       bool verbose = false,
       String fromAsset,
-      bool debug = false}) async {
+      bool debug = false,
+      String password}) async {
     assert(schema != null);
     await _db.init(
         path: path,
@@ -69,7 +70,8 @@ class SqlDb {
         schema: schema,
         verbose: verbose,
         fromAsset: fromAsset,
-        debug: debug);
+        debug: debug,
+        password: password);
   }
 
   /// Insert a row in a table
