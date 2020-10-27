@@ -4,7 +4,8 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:path_provider/path_provider.dart';
-import 'package:sqflite/sqflite.dart';
+//import 'package:sqflite/sqflite.dart';
+import 'package:sqflite_sqlcipher/sqflite.dart';
 import 'package:synchronized/synchronized.dart';
 
 import 'exceptions.dart';
@@ -77,7 +78,8 @@ class Db {
       List<DbTable> schema = const <DbTable>[],
       bool verbose = false,
       String fromAsset,
-      bool debug = false}) async {
+      bool debug = false,
+      String password}) async {
     /// The [path] is where the database file will be stored. It is by
     /// default relative to the documents directory unless [absolutePath]
     /// is true.
@@ -147,7 +149,7 @@ class Db {
               await _initQueries(schema, queries, _sqfliteDb, verbose);
             }
           }
-        });
+        },password: password);
       });
     }
     if (verbose) {
